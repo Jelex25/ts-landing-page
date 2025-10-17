@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendScout - AI Predictive Market Intelligence</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font family -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bogo-dark': '#0A0A1A',
+                        'bogo-accent': '#00F0FF',
+                        'bogo-secondary': '#8B5CF6', // Purple/Violet for secondary elements
+                        'bogo-text-light': '#E5E7EB',
+                    }
+                }
+            }
+        }
+
+        // Simple utility to check for and load icons
+        function loadIcons() {
+            const script = document.createElement('script');
+            script.src = "https://unpkg.com/lucide@latest";
+            script.onload = () => {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            };
+            document.head.appendChild(script);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadIcons);
+    </script>
+</head>
+<body class="bg-bogo-dark text-bogo-text-light min-h-screen">
+
+    <!-- Header & Navigation -->
+    <header id="nav-header" class="sticky top-0 z-50 transition-all duration-300 backdrop-blur-sm bg-bogo-dark/80 border-b border-bogo-secondary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-extrabold tracking-tight text-bogo-accent">TRENDSCOUT<span class="text-bogo-secondary text-sm">AI</span></a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#value-prop" class="text-bogo-text-light hover:text-bogo-accent transition duration-150">Value</a>
+                    <a href="#features" class="text-bogo-text-light hover:text-bogo-accent transition duration-150">Platform</a>
+                    <a href="#cta-main" class="text-bogo-text-light hover:text-bogo-accent transition duration-150">Insights</a>
+                </nav>
+
+                <!-- Primary CTA Button -->
+                <a href="#cta-main" class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-lg shadow-sm text-bogo-dark bg-bogo-accent hover:bg-white transition duration-200 focus:outline-none focus:ring-2 focus:ring-bogo-accent focus:ring-offset-2 focus:ring-offset-bogo-dark">
+                    Request a Demo
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-bogo-accent hover:bg-bogo-dark/50 focus:outline-none focus:ring-2 focus:ring-bogo-accent">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-bogo-secondary/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#value-prop" class="block px-3 py-2 rounded-md text-base font-medium text-bogo-text-light hover:bg-bogo-dark/50">Value</a>
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-bogo-text-light hover:bg-bogo-dark/50">Platform</a>
+                <a href="#cta-main" class="block px-3 py-2 rounded-md text-base font-medium text-bogo-text-light hover:bg-bogo-dark/50">Insights</a>
+                <a href="#cta-main" class="mt-4 block w-full text-center px-3 py-2 border border-transparent text-base font-medium rounded-md text-bogo-dark bg-bogo-accent hover:bg-white">Request a Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section id="hero" class="pt-20 pb-20 md:pt-32 md:pb-24 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="text-center md:text-left">
+                    <span class="inline-block bg-bogo-secondary/20 text-bogo-secondary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4">Market Intelligence Redefined</span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tighter text-white">
+                        Breakthrough <span class="text-bogo-accent">AI Predictive Analytics</span> for Go-To-Market
+                    </h1>
+                    <p class="mt-6 text-lg text-gray-400 max-w-xl mx-auto md:mx-0">
+                        Transform product launches and retail performance with TrendScout's end-to-end platform, turning disparate data into high-confidence **market success scores**.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                        <a href="#cta-main" class="w-full sm:w-auto px-8 py-3 border border-transparent text-base font-bold rounded-xl shadow-lg text-bogo-dark bg-bogo-accent hover:bg-white transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-bogo-accent/50">
+                            Start Predicting Success
+                        </a>
+                        <a href="#features" class="w-full sm:w-auto px-8 py-3 border border-bogo-secondary/50 text-base font-medium rounded-xl text-white hover:border-bogo-accent hover:text-bogo-accent transition duration-300">
+                            See How it Works
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Visual Mockup Placeholder -->
+                <div class="relative w-full aspect-video bg-bogo-secondary/10 p-4 rounded-3xl shadow-[0_0_80px_rgba(0,240,255,0.15)] hidden md:block">
+                    <!-- Dynamic Dashboard Placeholder -->
+                    <div class="absolute inset-4 bg-bogo-dark/80 rounded-2xl border border-bogo-accent/30 flex items-center justify-center">
+                        <div class="text-center">
+                            <i data-lucide="line-chart" class="w-16 h-16 text-bogo-accent mb-4 mx-auto"></i>
+                            <p class="text-lg font-semibold text-white">Data Visualization Mockup</p>
+                            <p class="text-sm text-gray-500">Predictive Success Score: 87%</p>
+                        </div>
+                    </div>
+                    <!-- Small "Live Data" Tag -->
+                    <span class="absolute top-4 right-4 text-xs font-mono text-bogo-dark bg-bogo-accent px-2 py-0.5 rounded-full">LIVE FEED</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Value Proposition Section -->
+        <section id="value-prop" class="py-16 md:py-24 bg-bogo-dark/50 border-y border-bogo-secondary/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">The Value Proposition: Go-To-Market, Simplified and Optimized</h2>
+                <p class="mt-4 text-xl text-gray-400 max-w-3xl mx-auto">
+                    TrendScout provides **end-to-end integration** that connects product development decisions directly to retail execution. Eliminate guesswork, optimize inventory, and launch products with unmatched certainty.
+                </p>
+
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <!-- Pillar 1: Product Development -->
+                    <div class="p-6 bg-bogo-dark rounded-xl border border-bogo-secondary/20 transition duration-300 hover:border-bogo-accent/50 transform hover:shadow-xl hover:shadow-bogo-secondary/10">
+                        <i data-lucide="feather" class="w-8 h-8 text-bogo-secondary mb-3"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">Product Development</h3>
+                        <p class="text-gray-400 text-sm">Validate concepts against real-time consumer sentiment and trend detection before a single SKU is finalized.</p>
+                    </div>
+
+                    <!-- Pillar 2: Manufacturing & Inventory -->
+                    <div class="p-6 bg-bogo-dark rounded-xl border border-bogo-secondary/20 transition duration-300 hover:border-bogo-accent/50 transform hover:shadow-xl hover:shadow-bogo-secondary/10">
+                        <i data-lucide="factory" class="w-8 h-8 text-bogo-secondary mb-3"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">Supply & Inventory</h3>
+                        <p class="text-gray-400 text-sm">Forecast hyper-local demand to optimize production schedules and reduce costly overstock or understock scenarios.</p>
+                    </div>
+
+                    <!-- Pillar 3: Retail Performance -->
+                    <div class="p-6 bg-bogo-dark rounded-xl border border-bogo-secondary/20 transition duration-300 hover:border-bogo-accent/50 transform hover:shadow-xl hover:shadow-bogo-secondary/10">
+                        <i data-lucide="store" class="w-8 h-8 text-bogo-secondary mb-3"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">Retail & E-Commerce</h3>
+                        <p class="text-gray-400 text-sm">Identify high-potential geographies and sales channels for targeted, high-return deployment strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Feature/Technology Section (The Four Revolutionary Elements) -->
+        <section id="features" class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">The TrendScout Engine: Four Pillars of Predictive Power</h2>
+                    <p class="mt-4 text-lg text-gray-400 max-w-3xl mx-auto">Our platform combines proprietary machine learning models with the industry's most diverse data sets to deliver actionable market certainty.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+
+                    <!-- Feature 1: Multi-Source Data Integration -->
+                    <div class="p-8 bg-bogo-dark border border-bogo-accent/20 rounded-2xl shadow-2xl shadow-bogo-accent/10">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="cloud-cog" class="w-8 h-8 text-bogo-accent mr-3"></i>
+                            <h3 class="text-2xl font-bold text-white">1. Multi-Source Data Integration</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            We unify the scattered landscape of market data into one intelligent hub. Our proprietary connectors ingest and normalize data from diverse sources, creating a single, comprehensive view.
+                        </p>
+                        <div class="mt-4 space-y-2">
+                            <div class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Amazon Metrics & E-Commerce Sales Data
+                            </div>
+                            <div class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Social Media Trends & Web Analytics
+                            </div>
+                            <div class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Consumer Sentiment & Product Reviews
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Advanced AI Predictive Analytics -->
+                    <div class="p-8 bg-bogo-dark border border-bogo-accent/20 rounded-2xl shadow-2xl shadow-bogo-accent/10">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="brain" class="w-8 h-8 text-bogo-accent mr-3"></i>
+                            <h3 class="text-2xl font-bold text-white">2. AI Trend Detection & Scoring</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            TrendScout's core machine learning algorithms analyze trillions of data points to identify emerging trends and demand shifts *before* they surface on standard reports.
+                        </p>
+                        <div class="mt-4 space-y-2">
+                            <div class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="scan-line" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Early-Warning System for Market Saturation
+                            </div>
+                            <div class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="layers-3" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Cross-Industry Comparative Trend Analysis
+                            </div>
+                            <div class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="microscope" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Deep-Dive Competitive Benchmarking
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Success Scoring (Model Output) -->
+                    <div class="p-8 bg-bogo-dark border border-bogo-accent/20 rounded-2xl shadow-2xl shadow-bogo-accent/10">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="target" class="w-8 h-8 text-bogo-accent mr-3"></i>
+                            <h3 class="text-2xl font-bold text-white">3. High-Confidence Success Scoring</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            Every product concept receives a clear, actionable score. This proprietary metric predicts the likelihood of achieving set revenue or market share goals based on AI modeling.
+                        </p>
+                        <ul class="mt-4 space-y-2 list-none p-0">
+                            <li class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="gauge" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Quantifiable risk assessment (0-100%)
+                            </li>
+                            <li class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="shuffle" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Scenario Planning based on input tweaks
+                            </li>
+                            <li class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="rocket" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Prioritize high-potential, low-risk product paths
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Feature 4: Real-Time Geographic & Seasonal Demand -->
+                    <div class="p-8 bg-bogo-dark border border-bogo-accent/20 rounded-2xl shadow-2xl shadow-bogo-accent/10">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="globe" class="w-8 h-8 text-bogo-accent mr-3"></i>
+                            <h3 class="text-2xl font-bold text-white">4. Geo-Seasonal Demand Forecasting</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            Stop guessing where and when to launch. TrendScout forecasts demand at the zip code level and maps seasonal interest peaks with 95%+ accuracy.
+                        </p>
+                        <ul class="mt-4 space-y-2 list-none p-0">
+                            <li class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="calendar-days" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Pinpoint seasonal trend onset and duration
+                            </li>
+                            <li class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Hyper-local stock deployment recommendations
+                            </li>
+                            <li class="flex items-center text-sm text-bogo-text-light">
+                                <i data-lucide="trending-up" class="w-4 h-4 text-bogo-secondary mr-2 flex-shrink-0"></i>
+                                Maximize launch revenue by targeted timing
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Main CTA Section -->
+        <section id="cta-main" class="py-16 md:py-24 bg-bogo-secondary/10">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                    Ready to Replace Intuition with **Intelligence**?
+                </h2>
+                <p class="mt-4 text-xl text-gray-400">
+                    Join product developers, manufacturers, and retailers who are already accelerating their market success with predictive certainty.
+                </p>
+                <div class="mt-8">
+                    <a href="#" class="inline-flex items-center px-12 py-4 border border-transparent text-lg font-bold rounded-xl shadow-2xl text-bogo-dark bg-bogo-accent hover:bg-white transition duration-300 transform hover:scale-[1.05] focus:outline-none focus:ring-4 focus:ring-bogo-accent/50">
+                        Secure Your Advanced Insights
+                    </a>
+                </div>
+                <p class="mt-6 text-sm text-gray-500">Stop reacting. Start predicting.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-bogo-dark/50 border-t border-bogo-secondary/10 mt-10">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-extrabold tracking-tight text-bogo-accent mb-4">TRENDSCOUT<span class="text-bogo-secondary text-sm">AI</span></h3>
+                    <p class="text-sm text-gray-400">The definitive platform for predictive Go-To-Market certainty.</p>
+                </div>
+                <!-- Links Column 1 -->
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Platform</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#value-prop" class="text-sm text-gray-400 hover:text-bogo-accent transition duration-150">Value Proposition</a></li>
+                        <li><a href="#features" class="text-sm text-gray-400 hover:text-bogo-accent transition duration-150">Predictive Engine</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-bogo-accent transition duration-150">Case Studies</a></li>
+                    </ul>
+                </div>
+                <!-- Links Column 2 -->
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-bogo-accent transition duration-150">About Us</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-bogo-accent transition duration-150">Careers</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-bogo-accent transition duration-150">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Contact/Social Column -->
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-bogo-accent transition duration-150">Terms of Service</a></li>
+                        <li><a href="#" class="text-sm text-gray-400 hover:text-bogo-accent transition duration-150">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-bogo-secondary/10 pt-8">
+                <p class="text-center text-sm text-gray-500">&copy; 2024 TrendScout AI Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for smooth scrolling and mobile menu toggle
+
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click (improves UX)
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Smooth Scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
