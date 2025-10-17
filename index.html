@@ -268,21 +268,52 @@
             </div>
         </section>
 
-        <!-- 4. Main CTA Section -->
+        <!-- 4. Main CTA Section (Now a Lead Capture Form) -->
         <section id="cta-main" class="py-16 md:py-24 bg-bogo-secondary/10">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
                     Ready to Replace Intuition with **Intelligence**?
                 </h2>
                 <p class="mt-4 text-xl text-gray-400">
-                    Join product developers, manufacturers, and retailers who are already accelerating their market success with predictive certainty.
+                    Tell us about your needs, and a TrendScout specialist will secure your advanced insights.
                 </p>
-                <div class="mt-8">
-                    <a href="#" class="inline-flex items-center px-12 py-4 border border-transparent text-lg font-bold rounded-xl shadow-2xl text-bogo-dark bg-bogo-accent hover:bg-white transition duration-300 transform hover:scale-[1.05] focus:outline-none focus:ring-4 focus:ring-bogo-accent/50">
-                        Secure Your Advanced Insights
-                    </a>
-                </div>
-                <p class="mt-6 text-sm text-gray-500">Stop reacting. Start predicting.</p>
+
+                <!-- Lead Form - MODIFIED FOR NETLIFY -->
+                <form id="lead-form" name="trendscout-lead" method="POST" data-netlify="true" class="mt-10 max-w-lg mx-auto p-8 bg-bogo-dark/80 rounded-2xl border border-bogo-secondary/20 shadow-2xl shadow-bogo-accent/10 text-left">
+
+                    <div class="mb-5">
+                        <label for="name-input" class="block text-sm font-medium text-bogo-text-light mb-2">Full Name</label>
+                        <input type="text" id="name-input" name="Name" required
+                               class="w-full p-3 rounded-lg bg-bogo-dark border border-bogo-secondary/50 text-white placeholder-gray-500 focus:ring-bogo-accent focus:border-bogo-accent transition duration-150"
+                               placeholder="Jane Doe">
+                    </div>
+
+                    <div class="mb-5">
+                        <label for="email-input" class="block text-sm font-medium text-bogo-text-light mb-2">Work Email</label>
+                        <input type="email" id="email-input" name="Email" required
+                               class="w-full p-3 rounded-lg bg-bogo-dark border border-bogo-secondary/50 text-white placeholder-gray-500 focus:ring-bogo-accent focus:border-bogo-accent transition duration-150"
+                               placeholder="jane@company.com">
+                    </div>
+
+                    <div class="mb-8">
+                        <label for="tier-select" class="block text-sm font-medium text-bogo-text-light mb-2">What insights are you interested in?</label>
+                        <select id="tier-select" name="Interested Tier" required
+                                class="w-full p-3 rounded-lg bg-bogo-dark border border-bogo-secondary/50 text-white focus:ring-bogo-accent focus:border-bogo-accent transition duration-150">
+                            <option value="" disabled selected>Select a Report Type</option>
+                            <option value="Tier A - Spot Report ($97)">Tier A - Spot Report (Demand Snapshot)</option>
+                            <option value="Tier B - Mini Deep-Dive ($299)">Tier B - Mini Deep-Dive (GTM Outline)</option>
+                            <option value="Tier C - Blueprint Pro + Buyout ($997)">Tier C - Blueprint Pro (Launch Plan & Buyout)</option>
+                            <option value="Tier D - Custom Enterprise (Bespoke)">Tier D - Custom Enterprise (Bespoke Coverage)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="submit-button" class="w-full inline-flex justify-center items-center px-12 py-3 border border-transparent text-lg font-bold rounded-xl shadow-2xl text-bogo-dark bg-bogo-accent hover:bg-white transition duration-300 transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-bogo-accent/50">
+                        Secure My Advanced Insights
+                    </button>
+                    <!-- Message area for feedback -->
+                    <p id="form-message" class="mt-4 text-center text-sm font-medium text-green-400 hidden">Thank you! Your request has been received.</p>
+                </form>
+                <p class="mt-6 text-sm text-gray-500">Stop reacting. Start predicting. Data submitted securely.</p>
             </div>
         </section>
     </main>
@@ -355,6 +386,65 @@
                 });
             });
         });
+
+        // 3. Form Submission Handler for Lead Form (via Fetch to prevent page refresh)
+        // NOTE: This JavaScript is now purely for client-side UX (loading state, success message).
+        // The actual form submission is handled automatically by Netlify after deployment.
+        const form = document.getElementById('lead-form');
+        const submitButton = document.getElementById('submit-button');
+        const formMessage = document.getElementById('form-message');
+
+        if (form) {
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                // Simple client-side validation check
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                // *** IMPORTANT CHANGE FOR NETLIFY: ***
+                // We use the browser's native form submission here, not fetch, 
+                // to allow Netlify's bot to capture the form data correctly on the server side.
+                // We only need the loading state for UX.
+                
+                const originalButtonText = submitButton.textContent;
+                
+                // Show loading state
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+
+                // Create a hidden iframe to submit the form data without navigating away
+                const iframe = document.createElement('iframe');
+                iframe.name = 'submit-iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+
+                // Set the form's target to the hidden iframe
+                form.setAttribute('target', 'submit-iframe');
+
+                // Listen for the iframe's load event (which fires when submission is complete)
+                iframe.onload = function() {
+                    // Success handling
+                    formMessage.textContent = 'Success! Your request has been sent to TrendScout. We will be in touch shortly.';
+                    formMessage.classList.remove('hidden', 'text-red-400');
+                    formMessage.classList.add('text-green-400');
+                    form.reset(); // Clear the form fields
+
+                    // Hide the form itself and show a big thank you message for better UX
+                    form.classList.add('hidden');
+                    
+                    // Cleanup
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                    iframe.remove();
+                };
+
+                // Finally, trigger the native submission
+                form.submit();
+            });
+        }
     </script>
 </body>
 </html>
